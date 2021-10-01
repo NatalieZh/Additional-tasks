@@ -12,9 +12,14 @@ namespace Deposits
 
         private Deposit[] deposits;
 
+        public Deposit[] Deposits
+        {
+            get { return deposits; }
+        }
+
         public Client()
         {
-            deposits = new Deposit[10];
+            deposits = new Deposit[20];
         }
 
         public bool AddDeposit(Deposit deposit)
@@ -76,6 +81,14 @@ namespace Deposits
             }
 
             return info;
+        }
+
+        public void DeleteDeposit(int i)
+        {
+            if (i > -1 && i < deposits.Length)
+            {
+                deposits[i] = null;
+            }
         }
     }
 }

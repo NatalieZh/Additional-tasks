@@ -12,6 +12,9 @@ namespace Deposits
 {
     public partial class Form1 : Form
     {
+
+        Client client = new Client();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,37 +22,83 @@ namespace Deposits
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //temp check
-            BaseDeposit dep1 = new BaseDeposit(1000, 5);
-            textBox1.Text += dep1.Income().ToString() + System.Environment.NewLine;
-            SpecialDeposit dep2 = new SpecialDeposit(1000, 5);
-            textBox1.Text += dep2.Income().ToString() + System.Environment.NewLine;
-            LongDeposit dep3 = new LongDeposit(1000, 5);
-            textBox1.Text += dep3.Income().ToString() + System.Environment.NewLine;
-            LongDeposit dep4 = new LongDeposit(1000, 6);
-            textBox1.Text += dep4.Income().ToString() + System.Environment.NewLine;
-            LongDeposit dep5 = new LongDeposit(1000, 10);
-            textBox1.Text += dep5.Income().ToString() + System.Environment.NewLine;
+            LoadInfo();
+        }
 
-            Client client = new Client();
-            client.AddDeposit(new BaseDeposit(1000, 5));
-            client.AddDeposit(new SpecialDeposit(1000, 5));
-            client.AddDeposit(new LongDeposit(1000, 5));
-            client.AddDeposit(new LongDeposit(1000, 6));
-            client.AddDeposit(new LongDeposit(1000, 5));
-            client.AddDeposit(new LongDeposit(1000, 10));
+        private void  GridLoad()
+        {
+            grdDeposits.Rows.Clear();
+            for (int i = 0; i < client.Deposits.Length; i++)
+            {
+                Deposit tmpDeposit = client.Deposits[i];
+                if (tmpDeposit != null)
+                {
+                    grdDeposits.Rows.Add(i + 1, tmpDeposit.Type, tmpDeposit.StartSum, tmpDeposit.Period, tmpDeposit.Income(), tmpDeposit.Amount);
+                }
+                else
+                {
+                    grdDeposits.Rows.Add(i + 1, "");
 
-            textBox1.Text += "Client info" + System.Environment.NewLine;
-            textBox1.Text += client.GetClientDeposits() + System.Environment.NewLine;
-            textBox1.Text += "TotalIncome" + System.Environment.NewLine;
-            textBox1.Text += client.TotalIncome() + System.Environment.NewLine;
-            textBox1.Text += "MaxIncome" + System.Environment.NewLine;
-            textBox1.Text += client.MaxIncome() + System.Environment.NewLine;
-            textBox1.Text += "GetIncomeByNumber 8" + System.Environment.NewLine;
-            textBox1.Text += client.GetIncomeByNumber(8) + System.Environment.NewLine;
-            textBox1.Text += "GetIncomeByNumber 2" + System.Environment.NewLine;
-            textBox1.Text += client.GetIncomeByNumber(2) + System.Environment.NewLine;
+                }
+            }
 
+        }
+
+        private void grdDeposits_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                client.DeleteDeposit(e.RowIndex);
+            }
+            LoadInfo();
+        }
+
+        private void LoadInfo()
+        {
+            GridLoad();
+            lblTotalIncome.Text = client.TotalIncome().ToString();
+            lblMaxIncome.Text = client.MaxIncome().ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool error = false;
+            if (cmbType.SelectedIndex == -1)
+            {
+                lblMessage.Text = "Select type!";
+                lblMessage.ForeColor = Color.Red;
+                error = true;
+            }
+
+            if (numAmount.Value == 0)
+            {
+                lblMessage.Text += " Enter Amount!";
+                lblMessage.ForeColor = Color.Red;
+                error = true;
+            }
+            if (numPeriod.Value == 0)
+            {
+                lblMessage.Text += " Enter Period!";
+                lblMessage.ForeColor = Color.Red;
+                error = true;
+            }
+            if (!error)
+            {
+                switch (cmbType.SelectedItem)
+                {
+                    case "Base":
+                        client.AddDeposit(new BaseDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        break;
+                    case "Special":
+                        client.AddDeposit(new SpecialDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        break;
+                    case "LongTerm":
+                        client.AddDeposit(new LongDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        break;
+                }
+                LoadInfo();
+            }
         }
     }
 }

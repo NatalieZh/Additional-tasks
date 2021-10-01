@@ -6,7 +6,13 @@ namespace Deposits
 {
     public class BaseDeposit : Deposit
     {
+        private const string type = "Base";
         public BaseDeposit(double depositAmount, int depositPeriod) : base(depositAmount, depositPeriod) { }
+
+        public override string Type
+        {
+            get { return type; }
+        }
 
         public override double Income()
         {

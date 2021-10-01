@@ -6,6 +6,13 @@ namespace Deposits
 {
     class LongDeposit : Deposit
     {
+        private const string type = "LongTerm";
+
+        public override string Type
+        {
+            get { return type; }
+        }
+
         public LongDeposit(double depositAmount, int depositPeriod) : base(depositAmount, depositPeriod) { }
 
         public override double Income()

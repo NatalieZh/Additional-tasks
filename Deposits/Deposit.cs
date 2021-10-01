@@ -10,6 +10,8 @@ namespace Deposits
         protected double amount;
         protected int period;
 
+        public abstract string Type { get; }
+
         public double StartSum 
         {
             get { return startSum; }

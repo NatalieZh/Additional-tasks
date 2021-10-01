@@ -6,6 +6,13 @@ namespace Deposits
 {
     class SpecialDeposit : Deposit
     {
+        private const string type = "Special";
+
+        public override string Type
+        {
+            get { return type; }
+        }
+
         public SpecialDeposit(double depositAmount, int depositPeriod) : base(depositAmount, depositPeriod) { }
 
         public override double Income()
