@@ -52,17 +52,20 @@ namespace Deposits
                 client.DeleteDeposit(e.RowIndex);
             }
             LoadInfo();
+            lblMessage.Text = "Deposit deleted!";
+            lblMessage.ForeColor = Color.Black;
         }
 
         private void LoadInfo()
         {
             GridLoad();
-            lblTotalIncome.Text = client.TotalIncome().ToString();
-            lblMaxIncome.Text = client.MaxIncome().ToString();
+            lblTotalIncome.Text = Math.Round(client.TotalIncome(), 2).ToString();
+            lblMaxIncome.Text = Math.Round(client.MaxIncome(),2).ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = string.Empty;
             bool error = false;
             if (cmbType.SelectedIndex == -1)
             {
@@ -88,17 +91,32 @@ namespace Deposits
                 switch (cmbType.SelectedItem)
                 {
                     case "Base":
-                        client.AddDeposit(new BaseDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        error = !client.AddDeposit(new BaseDeposit((double)numAmount.Value, (int)numPeriod.Value));
                         break;
                     case "Special":
-                        client.AddDeposit(new SpecialDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        error = !client.AddDeposit(new SpecialDeposit((double)numAmount.Value, (int)numPeriod.Value));
                         break;
                     case "LongTerm":
-                        client.AddDeposit(new LongDeposit((double)numAmount.Value, (int)numPeriod.Value));
+                        error =!client.AddDeposit(new LongDeposit((double)numAmount.Value, (int)numPeriod.Value));
                         break;
                 }
-                LoadInfo();
+                if (error)
+                {
+                    lblMessage.Text = "Deposit si not created! Exceeded max number of deposits!";
+                    lblMessage.ForeColor = Color.Red;
+                }
+                else
+                {
+                    LoadInfo();
+                    lblMessage.Text = "Deposit created";
+                    lblMessage.ForeColor = Color.Green;                
+                }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(client.GetClientDeposits());
         }
     }
 }

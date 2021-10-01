@@ -42,12 +42,13 @@ namespace Deposits
             this.lblMessage = new System.Windows.Forms.Label();
             this.numPeriod = new System.Windows.Forms.NumericUpDown();
             this.numAmount = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.lblMaxIncome = new System.Windows.Forms.Label();
             this.lblTotalIncome = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -145,7 +146,7 @@ namespace Deposits
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.numPeriod);
             this.groupBox1.Controls.Add(this.numAmount);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbType);
@@ -196,15 +197,15 @@ namespace Deposits
             this.numAmount.Size = new System.Drawing.Size(181, 31);
             this.numAmount.TabIndex = 6;
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Location = new System.Drawing.Point(259, 152);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(264, 38);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAdd.Location = new System.Drawing.Point(259, 152);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(264, 38);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -247,6 +248,7 @@ namespace Deposits
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.lblMaxIncome);
             this.groupBox3.Controls.Add(this.lblTotalIncome);
             this.groupBox3.Controls.Add(this.label5);
@@ -257,6 +259,16 @@ namespace Deposits
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Additiona info";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(33, 152);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(240, 38);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "More info";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // lblMaxIncome
             // 
@@ -328,7 +340,7 @@ namespace Deposits
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown numPeriod;
         private System.Windows.Forms.NumericUpDown numAmount;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbType;
@@ -340,6 +352,7 @@ namespace Deposits
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblMaxIncome;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button2;
     }
 }
 
