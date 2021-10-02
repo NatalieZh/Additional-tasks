@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deposits
+namespace DepositsInterface
 {
-    class SpecialDeposit : Deposit
+    class SpecialDeposit : Deposit, IProlongable
     {
         private const string type = "Special";
 
@@ -15,7 +15,7 @@ namespace Deposits
 
         public override double Amount
         {
-            get
+            get 
             {
                 amount = startSum;
                 for (int i = 1; i <= Period; i++)
@@ -31,6 +31,11 @@ namespace Deposits
         public override double Income()
         {
             return Math.Round(Amount - startSum, 2);
+        }
+
+        public bool CanToProlong()
+        {
+            return (startSum > 1000);
         }
     }
 }

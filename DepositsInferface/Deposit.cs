@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deposits
+namespace DepositsInterface
 {
-    public abstract class Deposit
+    public abstract class Deposit : IComparable
     {
         protected double startSum;
         protected double amount;
@@ -32,5 +32,14 @@ namespace Deposits
 
         public abstract double Income();
 
+        public int CompareTo(Deposit deposit)
+        {
+            return Amount.CompareTo(deposit.Amount);
+        }
+
+        public int CompareTo(object obj)
+        {
+            return (obj as Deposit).Amount.CompareTo(Amount);
+        }
     }
 }
