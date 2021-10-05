@@ -37,7 +37,12 @@ namespace MatrixTask
             Matrix matrix1 = new Matrix(2, 3, arr);
             Matrix matrix2 = new Matrix(3, 2, arr1);
             Matrix matrix3 = matrix1.Multiply(matrix2);
-
+            //matrix3 = matrix1.Deduct(matrix2);
+            //matrix3 = matrix1.Add(matrix2);
+            //matrix3 = matrix1 + matrix2;
+            //matrix3 = matrix1 - matrix2;
+            matrix3 = matrix1 * matrix2;
+            Matrix matrix4 = (Matrix)matrix1.Clone();
 
         }
     }

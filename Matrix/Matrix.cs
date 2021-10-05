@@ -4,19 +4,24 @@ using System.Text;
 
 namespace MatrixTask
 {
-    public class Matrix
+    public class Matrix : ICloneable, Ic
     {
-        private double[,] _value;
-        private int rows, columns;
+        #region Private variables
 
-        public int Rows 
+        private double[,] _value;
+        private int _rows, _columns;
+
+        #endregion
+
+        #region Properties
+        public int Rows
         {
-            get => rows;
+            get => _rows;
         }
 
         public int Columns
         {
-            get => columns;
+            get => _columns;
         }
         public double[,] Value
         {
@@ -29,38 +34,31 @@ namespace MatrixTask
             get => _value[i, j];
             set => _value[i, j] = value;
         }
+
+        #endregion
+
+        #region Constructors
+
         /// <summary>
-        /// 
+        /// Create empty matrix.
         /// </summary>
         /// <param name="rows">Number of rows</param>
         /// <param name="columns">Number of columns</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when number of rows and columns less then 1</exception>
         public Matrix(int rows, int columns)
         {
-            if (rows <= 0 || columns <= 0)
-            {
-                throw new ArgumentOutOfRangeException("Not possible to create matrix with number of columns or rows les then 1.");
-            }
-            this.rows = rows;
-            this.columns = columns;
-            _value = new double[rows, columns];
+            FillInitialValues(rows, columns);
         }
 
         /// <summary>
-        /// 
+        /// Create matrix from one-dimential array.
         /// </summary>
         /// <param name="rows"></param>
         /// <param name="columns"></param>
-        /// <param name="array">One dimentional array. Values from array are used to fullfill matrix: matrix[0,0] = array[0], matrix[0,1] = array[1] and so on. Matrix will be filled row by row. </param>
+        /// <param name="array">One-dimentional array. Values from array are used to fullfill matrix: matrix[0,0] = array[0], matrix[0,1] = array[1] and so on. Matrix will be filled row by row. </param>
         public Matrix(int rows, int columns, double[] array)
         {
-            if (rows <= 0 || columns <= 0)
-            {
-                throw new ArgumentOutOfRangeException("Not possible to create matrix with number of columns or rows les then 1.");
-            }
-            this.rows = rows;
-            this.columns = columns;
-            _value = new double[rows, columns];
+            FillInitialValues(rows, columns);
             //fill from array
             int k = 0;
             for (int i = 0; i < rows; i++)
@@ -83,22 +81,16 @@ namespace MatrixTask
         }
 
         /// <summary>
-        /// 
+        /// Create matrix from two-dimential array.
         /// </summary>
         /// <param name="rows"></param>
         /// <param name="columns"></param>
-        /// <param name="array">One dimentional array. Values from array are used to fullfill matrix: matrix[0,0] = array[0], matrix[0,1] = array[1] and so on. Matrix will be filled row by row. </param>
+        /// <param name="array">Two-dimentional array. Values from array are used to fullfill matrix. If boundaries of array and matrix are not equal ArgumentOutOfRangeException exception is thrown</param>
         public Matrix(int rows, int columns, double[,] array)
         {
-            if (rows <= 0 || columns <= 0)
+            if (Rows == array.GetUpperBound(0) && Columns == array.GetUpperBound(1))
             {
-                throw new ArgumentOutOfRangeException("Not possible to create matrix with number of columns or rows les then 1.");
-            }
-            try
-            {
-                 this.rows = rows;
-                this.columns = columns;
-                _value = new double[rows, columns];
+                FillInitialValues(rows, columns);
                 //fill from array
                 for (int i = 0; i < rows; i++)
                 {
@@ -107,13 +99,16 @@ namespace MatrixTask
                         _value[i, j] = array[i,j];
                     }
                 }
-           
             }
-            catch (ArgumentOutOfRangeException e)
+            else
             {
-                
+                throw new ArgumentOutOfRangeException("Not possible to create matrix from array. Boundaries of array and matrix are not equa.");
             }
         }
+
+        #endregion
+
+        #region Public methods
 
         /// <summary>
         /// 
@@ -127,9 +122,9 @@ namespace MatrixTask
             {
                 throw new ArgumentOutOfRangeException("Number of returned row is negative or or greater the number of rows in the matrix");
             }
-            double[] temp = new double[columns];
+            double[] temp = new double[Columns];
 
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < Columns; i++)
             {
                 temp[i] = this[rowNumber, i];
             }
@@ -148,9 +143,9 @@ namespace MatrixTask
             {
                 throw new ArgumentOutOfRangeException("Number of returned colunm is negative or greater the number of columns in the matrix");
             }
-            double[] temp = new double[rows];
+            double[] temp = new double[Rows];
 
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < Rows; i++)
             {
                 temp[i] = this[i, columnNumber];
             }
@@ -165,18 +160,25 @@ namespace MatrixTask
         /// <exception cref="ArgumentException">Thrown when added matrix is not the same dimension as current.</exception>
         public Matrix Add(Matrix matrix)
         {
-            Matrix temp = new Matrix(this.Rows, this.Columns);
+            Matrix temp = new Matrix(Rows, Columns);
 
-            if (this.Rows != matrix.Rows && this.Columns != matrix.Columns)
+            if (Rows != matrix.Rows || Columns != matrix.Columns)
             {
                 throw new ArgumentException("Parameter 'matrix' should has the same dimension as current one.");
             }
-            for (int i = 0; i < rows; i++)
+            try
             {
-                for (int j = 0; j < columns; j++)
+                for (int i = 0; i < Rows; i++)
                 {
-                    temp[i, j] = this[i, j] + matrix[i, j];
+                    for (int j = 0; j < Columns; j++)
+                    {
+                        temp[i, j] = this[i, j] + matrix[i, j];
+                    }
                 }
+            }
+            catch
+            {
+                throw new MatrixException("Matrixs can't be added!");
             }
             return temp;
         }
@@ -189,15 +191,15 @@ namespace MatrixTask
         /// <exception cref="ArgumentException">Thrown when deducted matrix is not the same dimension as current.</exception>
         public Matrix Deduct(Matrix matrix)
         {
-            Matrix temp = new Matrix(this.Rows, this.Columns);
+            Matrix temp = new Matrix(Rows, Columns);
 
-            if (this.Rows != matrix.Rows && this.Columns != matrix.Columns)
+            if (Rows != matrix.Rows || Columns != matrix.Columns)
             {
                 throw new ArgumentException("Parameter 'matrix' should has the same dimension as current one.");
             }
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < Rows; i++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int j = 0; j < Columns; j++)
                 {
                     temp[i, j] = this[i, j] - matrix[i, j];
                 }
@@ -213,24 +215,104 @@ namespace MatrixTask
         /// <exception cref="ArgumentException">Thrown when number of columns in parameter 'matrix' is not equal to number of rows in current one.</exception>
         public Matrix Multiply(Matrix matrix)
         {
-            if (this.Rows != matrix.Columns)
+            if (Rows != matrix.Columns)
             {
                 throw new ArgumentException("Number of columns in parameter 'matrix' should be equal to number of rows in current one.");
             }
-            Matrix temp = new Matrix(this.Rows, matrix.Columns);
-            for (int i = 0; i < this.Rows; i++)
+            Matrix temp = new Matrix(Rows, matrix.Columns);
+            try
             {
-                for (int j = 0; j < matrix.Columns; j++)
+                for (int i = 0; i < Rows; i++)
                 {
-                    double[] r = this.GetRow(i);
-                    double[] c = matrix.GetColumn(j);
-                    for (int k = 0; k < r.Length; k++)
+                    for (int j = 0; j < matrix.Columns; j++)
                     {
-                        temp[i, j] += r[k] * c[k];
+                        double[] r = GetRow(i);
+                        double[] c = matrix.GetColumn(j);
+                        for (int k = 0; k < r.Length; k++)
+                        {
+                            temp[i, j] += r[k] * c[k];
+                        }
                     }
                 }
             }
+            catch
+            {
+                throw new MatrixException("Matrixs can't be multiplied!");
+            }
             return temp;
         }
+
+        #endregion
+
+        #region Overloaded operators
+        public static Matrix operator +(Matrix matrix1, Matrix matrix2)
+        {
+            return matrix1.Add(matrix2);
+        }
+        public static Matrix operator -(Matrix matrix1, Matrix matrix2)
+        {
+            return matrix1.Deduct(matrix2);
+        }
+        public static Matrix operator *(Matrix matrix1, Matrix matrix2)
+        {
+            return matrix1.Multiply(matrix2);
+        }
+
+        #endregion
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public override bool Equals(object obj)
+        {
+            Matrix temp;
+            if (obj is Matrix)
+            {
+               temp = (Matrix)obj;
+            }
+            else 
+            {
+               return false;
+            }
+            return Rows == temp.Rows && Columns == temp.Columns && CompareValues(temp);
+        }
+
+        #region Private functions
+
+        private void FillInitialValues(int rows, int columns)
+        {
+            if (rows > 0 && columns > 0)
+            {
+                _rows = rows;
+                _columns = columns;
+                _value = new double[rows, columns];
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Not possible to create matrix with number of columns or rows les then 1.");
+            }
+        }
+
+        private bool CompareValues(Matrix matrix)
+        {
+            bool result = true;
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    if (this[i, j] != matrix[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return result;
+        }
+
+        #endregion
+
+
     }
 }
