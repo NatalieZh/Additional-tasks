@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MatrixTask
 {
-    public class Matrix : ICloneable, Ic
+    public class Matrix : ICloneable
     {
         #region Private variables
 

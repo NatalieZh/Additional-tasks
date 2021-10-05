@@ -43,7 +43,8 @@ namespace MatrixTask
             //matrix3 = matrix1 - matrix2;
             matrix3 = matrix1 * matrix2;
             Matrix matrix4 = (Matrix)matrix1.Clone();
-
+            bool isEquale = matrix4.Equals(matrix1);
+            isEquale = matrix4.Equals(matrix);
         }
     }
 }
