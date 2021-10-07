@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Matrix"
         mc:Ignorable="d"
-        Title="Matrix" Height="450" Width="800">
+        Title="Matrix" Height="978" Width="957">
     <Grid>
-        
+        <TextBlock x:Name="txtMatrix1" HorizontalAlignment="Left" Height="420" Margin="10,24,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <TextBlock x:Name="txtMatrix2" HorizontalAlignment="Left" Height="420" Margin="495,24,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <TextBlock x:Name="txtResult" HorizontalAlignment="Left" Height="420" Margin="272,481,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="446" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+
     </Grid>
 </Window>

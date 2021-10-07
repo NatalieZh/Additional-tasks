@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Dynamic;
+
 
 namespace MatrixTask
 {
@@ -36,8 +39,11 @@ namespace MatrixTask
 
             Matrix matrix1 = new Matrix(2, 3, arr);
             Matrix matrix2 = new Matrix(3, 2, arr1);
+            txtMatrix1.Text = matrix1.PrintMatrix();
+            txtMatrix2.Text = matrix2.PrintMatrix();
+
             Matrix matrix3 = matrix1.Multiply(matrix2);
-            //matrix3 = matrix1.Deduct(matrix2);
+            matrix3 = matrix1.Deduct(matrix2);
             //matrix3 = matrix1.Add(matrix2);
             //matrix3 = matrix1 + matrix2;
             //matrix3 = matrix1 - matrix2;
@@ -45,6 +51,15 @@ namespace MatrixTask
             Matrix matrix4 = (Matrix)matrix1.Clone();
             bool isEquale = matrix4.Equals(matrix1);
             isEquale = matrix4.Equals(matrix);
+
+            txtResult.Text = matrix3.PrintMatrix();
+
+
+        }
+
+        private void FillTxtMatrix1(Matrix matrix)
+        {
+            txtMatrix1.Text = matrix.PrintMatrix();
         }
     }
 }

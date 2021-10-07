@@ -242,6 +242,25 @@ namespace MatrixTask
             return temp;
         }
 
+        public string PrintMatrix()
+        {
+            string result = string.Empty;
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j< Columns; j++)
+                {
+                    result += this[i, j].ToString().PadLeft(7);
+
+                }
+                result += System.Environment.NewLine;
+            }
+
+
+
+            return result;
+        }
+
         #endregion
 
         #region Overloaded operators
