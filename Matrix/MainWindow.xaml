@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Matrix"
-        mc:Ignorable="d"
         Title="Matrix" Height="978" Width="957">
     <Grid>
         <TextBlock x:Name="txtMatrix1" HorizontalAlignment="Left" Height="420" Margin="10,24,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         <TextBlock x:Name="txtMatrix2" HorizontalAlignment="Left" Height="420" Margin="495,24,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-        <TextBlock x:Name="txtResult" HorizontalAlignment="Left" Height="420" Margin="272,481,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="446" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <RadioButton x:Name="radioButton" Content="dsfadsfdsaf
+                     " HorizontalAlignment="Left" Margin="65,888,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton1" Content="RadioButton" HorizontalAlignment="Left" Margin="73,925,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton2" Content="RadioButton" HorizontalAlignment="Left" Margin="73,849,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

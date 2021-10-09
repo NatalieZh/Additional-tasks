@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepositsAbstract", "Deposit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepositsInterface", "DepositsInferface\DepositsInterface.csproj", "{A2518CE7-7EB8-461A-8D97-D3457493FAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTask", "Matrix\MatrixTask.csproj", "{C09AD7F8-0DC2-4180-AA66-87FD6420574E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixTask", "Matrix\MatrixTask.csproj", "{C09AD7F8-0DC2-4180-AA66-87FD6420574E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolynomialTask", "PolynomialTask\PolynomialTask.csproj", "{6ED68943-3BA0-4266-B717-36B6C1146A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linqTest", "linqTest\linqTest.csproj", "{977F2309-0400-46CE-8706-17D915CA1D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{C09AD7F8-0DC2-4180-AA66-87FD6420574E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09AD7F8-0DC2-4180-AA66-87FD6420574E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C09AD7F8-0DC2-4180-AA66-87FD6420574E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED68943-3BA0-4266-B717-36B6C1146A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED68943-3BA0-4266-B717-36B6C1146A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED68943-3BA0-4266-B717-36B6C1146A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED68943-3BA0-4266-B717-36B6C1146A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977F2309-0400-46CE-8706-17D915CA1D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977F2309-0400-46CE-8706-17D915CA1D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977F2309-0400-46CE-8706-17D915CA1D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977F2309-0400-46CE-8706-17D915CA1D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,24 +37,27 @@ namespace MatrixTask
             //    arr[i] = Math.Round(Math.Pow(10, random.Next(1,4)) * random.NextDouble(), 2);
             //}
 
-            Matrix matrix1 = new Matrix(2, 3, arr);
-            Matrix matrix2 = new Matrix(3, 2, arr1);
-            txtMatrix1.Text = matrix1.PrintMatrix();
-            txtMatrix2.Text = matrix2.PrintMatrix();
+            //Matrix matrix1 = new Matrix(2, 3, arr);
+            //Matrix matrix2 = new Matrix(3, 2, arr1);
+            //txtMatrix1.Text = matrix1.PrintMatrix();
+            //txtMatrix2.Text = matrix2.PrintMatrix();
 
-            Matrix matrix3 = matrix1.Multiply(matrix2);
-            matrix3 = matrix1.Deduct(matrix2);
-            //matrix3 = matrix1.Add(matrix2);
-            //matrix3 = matrix1 + matrix2;
-            //matrix3 = matrix1 - matrix2;
-            matrix3 = matrix1 * matrix2;
-            Matrix matrix4 = (Matrix)matrix1.Clone();
-            bool isEquale = matrix4.Equals(matrix1);
-            isEquale = matrix4.Equals(matrix);
+            //Matrix matrix3 = matrix1.Multiply(matrix2);
+            //matrix3 = matrix1.Deduct(matrix2);
+            ////matrix3 = matrix1.Add(matrix2);
+            ////matrix3 = matrix1 + matrix2;
+            ////matrix3 = matrix1 - matrix2;
+            //matrix3 = matrix1 * matrix2;
+            //Matrix matrix4 = (Matrix)matrix1.Clone();
+            //bool isEquale = matrix4.Equals(matrix1);
+            //isEquale = matrix4.Equals(matrix);
 
-            txtResult.Text = matrix3.PrintMatrix();
-
-
+            //txtResult.Text = matrix3.PrintMatrix();
+            if (radioButton.IsChecked.HasValue && radioButton.IsChecked.Value)
+            { 
+            
+            
+            }
         }
 
         private void FillTxtMatrix1(Matrix matrix)
