@@ -1,0 +1,5 @@
+(in) krankenhaus -> (out)kranken, haus, 
+(in) bahn -> (out)bahn, 
+(in) volksbank -> (out)volks, bank, 
+(in) krankenhausreifen -> (out)krankenhausreifen, 
+(in) krankheit -> (out)krankheit, 
